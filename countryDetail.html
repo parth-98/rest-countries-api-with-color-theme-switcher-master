@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content d-flex">
+                <h1>Where in the World?
+                </h1>
+                <button id="toggle" class="btn btn-toggle">
+                    <i class="far fa-moon"></i>
+                    <i class="fas fa-moon"></i>
+                    Dark Mode
+                </button>
+            </div>
+
+        </div>
+    </header>
+    <section>
+        <div class="container">
+            <div class="country-content" id="country-content">
+                <button id="back" class="btn-back"> <i class="fas fa-long-arrow-alt-left"></i> Back</button>
+                
+            </div>
+        </div>
+
+
+    </section>
+    <script>
+
+        // window.on("load",() => {
+        //     const val = localStorage.getItem("countryName")
+        // })
+        const countryEl = document.getElementById('country-content');
+        const toggleBtn = document.getElementById("toggle");
+        const backBtn = document.getElementById("back");
+
+
+        window.onload = function () {
+            const val = localStorage.getItem("countryName")
+            getCountries(val)
+        };
+        toggleBtn.addEventListener("click", () => {
+                document.body.classList.toggle("dark");
+            });
+        backBtn.addEventListener("click", () => {
+                window.location.href = "index.html";
+            });
+
+
+        // window.onload = console.log(localStorage.getItem("countryName"));
+        async function getCountries(val) {
+            const res = await fetch("https://restcountries.eu/rest/v2/name/"+val);
+            const countries = await res.json();
+            displayCountries(countries);
+        }
+
+        function displayCountries(countries) {
+            countries.forEach(countries => {
+                console.log(countries.name)
+                const countryInfo = document.createElement('div');
+                countryInfo.classList.add("country-full-info");
+                const countryLn = document.querySelectorAll('country-language')
+
+                const language = countries.languages;
+                 countryLn.innerHTML = language.toString();
+                 
+                  // "A,B,C"
+                countryInfo.innerHTML = `
+                    <div class="country-image">
+                        <img src="${countries.flag}" alt="">
+                    </div>
+                    <div id="country-data" class="country-data">
+                        <h2 class="country-name">${countries.name}</h2>
+                        <div class="country-sub-info">
+                            <p><strong> Native Name : </strong> ${countries.nativeName}</p>
+                            <p><strong> Population : </strong> ${countries.population}</p>
+                            <p><strong> Region :</strong> ${countries.region}</p>
+                            <p><strong>Sub Region :</strong> ${countries.subregion}</p>
+                            <p><strong>Capital : </strong> ${countries.capital}</p>
+                            <p><strong>Top Level Domain :</strong> ${countries.topLevelDomain}</p>
+                            <p><strong>Currencies : </strong> ${JSON.stringify((countries.currencies[0].name))} </p>
+                            <p class="country-language"><strong>Launguage : </strong> ${Array.prototype.map.call(language, function (item) { return item.name; }).join(",")}</p>
+                        </div>
+                    </div>
+                `;
+                // Object.keys(person).map(function (k) { return person[k] }).join(",");
+
+
+
+                // How to Convert Array of Objects into Comma Separated String extracting only one property | José Quinto
+                // https://blog.josequinto.com
+
+
+                // Object.keys(person).map(function (k) { return person[k] }).join(",");
+
+
+
+                // How to Convert Array of Objects into Comma Separated String extracting only one property | José Quinto
+                // https://blog.josequinto.com
+
+
+
+                // Type a message
+
+                // Type a message
+
+                countryEl.appendChild(countryInfo);
+            });
+            
+        }
+        
+
+    </script>
+</body>
+
+</html>

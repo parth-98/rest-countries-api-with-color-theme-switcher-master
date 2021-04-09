@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REST Countries API</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content d-flex">
+                <h1>Where in the World?
+                </h1>
+                <button id="toggle" class="btn btn-toggle">
+                    <i class="far fa-moon"></i>
+                    <i class="fas fa-moon"></i>
+                    Dark Mode
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <div class="filter-section d-flex">
+                <input type="text" placeholder="Search for a country" id="search" class="search">
+                <div class="dropdown" id="filter">
+                    <button>Filter By Region <i class="fas fa-caret-down"></i></button>
+                    <div class="dropdown-content">
+                        <ul>
+                            <li>Africa</li>
+                            <li>America</li>
+                            <li>Asia</li>
+                            <li>Europe</li>
+                            <li>Oceania</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div  id="countries" class="country-section d-flex ">
+                
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
