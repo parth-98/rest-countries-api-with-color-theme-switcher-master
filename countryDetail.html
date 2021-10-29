@@ -61,7 +61,7 @@
 
         // window.onload = console.log(localStorage.getItem("countryName"));
         async function getCountries(val) {
-            const res = await fetch("https://restcountries.eu/rest/v2/name/"+val);
+            const res = await fetch("https://restcountries.com/v2/name/"+val);
             const countries = await res.json();
             displayCountries(countries);
         }
